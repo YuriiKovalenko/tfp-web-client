@@ -1,0 +1,37 @@
+<div class="screen">
+  <div class="sign-in">
+    <h2 class="sign-in__title">Авторизация</h2>
+    <form class="sign-in__form">
+      <div class="form-field">
+        <input
+          id="login"
+          type="text"
+          class="form-field__input"
+          formControlName="login"
+        />
+        <label class="form-field__label" for="login">Логин</label>
+        <div class="form-field__prefix">
+          <span class="lnr lnr-envelope"></span>
+        </div>
+      </div>
+      <div class="form-field">
+        <input
+          id="password"
+          type="text"
+          class="form-field__input"
+          formControlName="password"
+        />
+        <label class="form-field__label" for="password">Пароль</label>
+        <div class="form-field__prefix">
+          <span class="lnr lnr-lock"></span>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="form-actions__button form-actions__button_sign-up">
+          Регистрация
+        </button>
+        <button class="form-actions__button form-actions__button_sign-in">Войти</button>
+      </div>
+    </form>
+  </div>
+</div>
