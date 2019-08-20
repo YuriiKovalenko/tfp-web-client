@@ -1,0 +1,29 @@
+<div class="autocomplete">
+  <input
+    fullWidth
+    [status]="status"
+    nbInput
+    type="text"
+    [placeholder]="placeholder"
+    [disabled]="isDisabled"
+    class="autocomplete-input"
+    (blur)="blur.next()"
+    [(ngModel)]="value"
+    (input)="onInput()"
+  />
+  <nb-card *ngIf="show && items" class="autocomplete-list">
+    <nb-list>
+      <nb-list-item
+        *ngFor="let item of items"
+        (click)="valueSelected(item)"
+        class="autocomplete-list-item"
+      >
+        <div class="picture" *ngIf="item.pictureUrl">
+          <img src="{{ item.pictureUrl }}" alt="" />
+        </div>
+        <div class="name">{{ item.name }}</div>
+        <div class="value" *ngIf="item.value">{{ item.value }}</div>
+      </nb-list-item>
+    </nb-list>
+  </nb-card>
+</div>

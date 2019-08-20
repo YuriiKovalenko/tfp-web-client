@@ -1,0 +1,43 @@
+<div class="profile-title">
+  <h3 class="title"><nb-icon icon="user"></nb-icon> Профиль</h3>
+</div>
+<nb-tabset>
+  <nb-tab tabTitle="Портфолио">
+    <input
+      type="file"
+      name=""
+      id=""
+      style="display: none;"
+      #upload
+      (change)="uploadPhoto($event)"
+      accept="image/*"
+    />
+    <div class="profile-gallery" *ngIf="user">
+      <img
+        class="gallery-card upload-card"
+        src="../../../assets/upload.jpg"
+        alt=""
+        (click)="upload.click()"
+      />
+      <img
+        class="gallery-card"
+        *ngFor="let photo of user.gallery.photos"
+        [src]="photo.smallPicture"
+        alt=""
+      />
+    </div>
+  </nb-tab>
+  <nb-tab tabTitle="Информация">
+    <div class="profile-info">
+      <nb-card>
+        <nb-card-header>Обо мне</nb-card-header>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>Модельніе атрибуті</nb-card-header>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>Контакті</nb-card-header>
+      </nb-card>
+    </div>
+  </nb-tab>
+</nb-tabset>

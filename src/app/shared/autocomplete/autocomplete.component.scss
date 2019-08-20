@@ -1,0 +1,45 @@
+.autocomplete {
+  position: relative;
+
+  &-list {
+    max-height: 190px;
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    z-index: 5;
+
+    &-item {
+      display: grid;
+      grid-template: 1fr 1fr / auto 1fr;
+
+      &:hover {
+        background: #fafafa;
+        cursor: pointer;
+      }
+
+      .picture {
+        grid-column: 1;
+        grid-row: 1;
+        grid-row-end: 3;
+        width: 40px;
+        padding: 5px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .name {
+        display: flex;
+        align-items: center;
+        grid-column: 2;
+      }
+
+      .value {
+        grid-column: 2;
+        font-size: 0.8em;
+        opacity: 0.7;
+      }
+    }
+  }
+}

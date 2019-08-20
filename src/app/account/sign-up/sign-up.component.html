@@ -1,3 +1,253 @@
-<p>
-  sign-up works!
-</p>
+<div class="screen">
+  <div class="picture"></div>
+  <div class="sign-up">
+    <nb-stepper #stepper>
+      <nb-step [stepControl]="mainForm" label="Информация">
+        <form [formGroup]="mainForm" class="step-container">
+          <div class="input-group">
+            <div class="form-field">
+              <input
+                fullWidth
+                [status]="
+                  mainForm.get('name').errors && mainForm.get('name').dirty
+                    ? 'danger'
+                    : 'primary'
+                "
+                nbInput
+                type="text"
+                placeholder="Имя"
+                class="form-control"
+                formControlName="name"
+              />
+              <span
+                class="error"
+                status="danger"
+                *ngIf="
+                  mainForm.get('name').dirty &&
+                  mainForm.controls['name'].errors?.required
+                "
+              >
+                Обязательное поле
+              </span>
+            </div>
+            <div class="form-field">
+              <input
+                fullWidth
+                [status]="
+                  mainForm.get('surname').errors &&
+                  mainForm.get('surname').dirty
+                    ? 'danger'
+                    : 'primary'
+                "
+                nbInput
+                type="text"
+                placeholder="Фамилия"
+                class="form-control"
+                formControlName="surname"
+              />
+              <span
+                class="error"
+                *ngIf="
+                  mainForm.get('surname').dirty &&
+                  mainForm.controls['surname'].errors?.required
+                "
+              >
+                Обязательное поле
+              </span>
+            </div>
+            <div class="form-field">
+              <app-autocomplete
+                class="form-control"
+                [items$]="countries$"
+                placeholder="Страна"
+                [status]="
+                  mainForm.get('country').errors &&
+                  mainForm.get('country').dirty
+                    ? 'danger'
+                    : 'primary'
+                "
+                (selectionChange)="onCountrySelect($event)"
+                formControlName="country"
+              ></app-autocomplete>
+              <span
+                class="error"
+                *ngIf="
+                  mainForm.get('country').dirty &&
+                  mainForm.controls['country'].errors?.required
+                "
+              >
+                Обязательное поле
+              </span>
+            </div>
+            <div class="form-field">
+              <app-autocomplete
+                class="form-control"
+                [items$]="cities$"
+                placeholder="Город"
+                [status]="
+                  mainForm.get('country').errors &&
+                  mainForm.get('country').dirty
+                    ? 'danger'
+                    : 'primary'
+                "
+                (selectionChange)="onCitySelect($event)"
+                formControlName="city"
+              ></app-autocomplete>
+              <span
+                class="error"
+                *ngIf="
+                  mainForm.get('city').dirty &&
+                  mainForm.controls['city'].errors?.required
+                "
+              >
+                Обязательное поле
+              </span>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button
+              nbButton
+              nbStepperNext
+              [disabled]="mainForm.invalid || !countrySelected || !citySelected"
+            >
+              Дальше
+            </button>
+          </div>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="authForm" label="Авторизация">
+        <form [formGroup]="authForm" class="step-container">
+          <div class="input-group">
+            <div class="form-field">
+              <input
+                fullWidth
+                [status]="
+                  authForm.get('email').errors && authForm.get('email').dirty
+                    ? 'danger'
+                    : 'primary'
+                "
+                nbInput
+                type="text"
+                placeholder="Почта"
+                class="form-control"
+                formControlName="email"
+              />
+              <span
+                class="error"
+                *ngIf="
+                  authForm.get('email').dirty &&
+                  authForm.controls['email'].errors?.required
+                "
+              >
+                Обязательное поле
+              </span>
+              <span
+                class="error"
+                *ngIf="
+                  authForm.get('email').dirty &&
+                  authForm.controls['email'].errors?.email
+                "
+              >
+                Некорректный email
+              </span>
+            </div>
+            <div class="form-field">
+              <input
+                fullWidth
+                [status]="
+                  authForm.get('password').errors &&
+                  authForm.get('password').dirty
+                    ? 'danger'
+                    : 'primary'
+                "
+                nbInput
+                [nbTooltip]="passwordHint"
+                nbTooltipPlacement="right"
+                type="password"
+                placeholder="Пароль"
+                class="form-control"
+                formControlName="password"
+              />
+              <span
+                class="error"
+                *ngIf="
+                  authForm.get('password').dirty &&
+                  authForm.controls['password'].errors?.required
+                "
+              >
+                Обязательное поле
+              </span>
+              <span
+                class="error"
+                *ngIf="
+                  authForm.get('password').dirty &&
+                  authForm.controls['password'].errors?.pattern
+                "
+              >
+                Некорректный пароль
+              </span>
+            </div>
+            <div class="form-field">
+              <input
+                fullWidth
+                [status]="
+                  authForm.get('confirmPassword').errors &&
+                  authForm.get('confirmPassword').dirty
+                    ? 'danger'
+                    : 'primary'
+                "
+                nbInput
+                type="password"
+                placeholder="Подтвердите пароль"
+                class="form-control"
+                formControlName="confirmPassword"
+              />
+              <span
+                class="error"
+                *ngIf="
+                  authForm.get('confirmPassword').dirty &&
+                  authForm.controls['confirmPassword'].errors?.invalid
+                "
+              >
+                Не совпадает с паролем
+              </span>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button nbButton nbStepperNext [disabled]="authForm.invalid">
+              Дальше
+            </button>
+            <button nbButton nbStepperPrevious>Назад</button>
+          </div>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="roleForm" label="Роль">
+        <form [formGroup]="roleForm" class="step-container">
+          <div class="input-group">
+            <nb-radio-group formControlName="role">
+              <nb-radio value="role.value" *ngFor="let role of roles">
+                {{ role.name }}
+              </nb-radio>
+            </nb-radio-group>
+          </div>
+          <div class="form-actions">
+            <button
+              nbButton
+              (click)="signUp(stepper)"
+              [disabled]="roleForm.invalid"
+            >
+              Завершить
+            </button>
+            <button nbButton nbStepperPrevious>Назад</button>
+          </div>
+        </form>
+      </nb-step>
+      <nb-step [hidden]="true">
+        <div class="step-container">
+          <h3>Регистрация успешна</h3>
+          <button nbButton (click)="stepper.reset()">На главную</button>
+        </div>
+      </nb-step>
+    </nb-stepper>
+  </div>
+</div>

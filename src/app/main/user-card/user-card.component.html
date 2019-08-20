@@ -1,0 +1,8 @@
+<div class="user-card">
+  <img [src]="user.photo" class="user-card-photo" alt="" />
+  <div class="user-card-rating">
+    <span>Рейтинг</span> {{ user.rating }} <i class="icon i-linecons-fire"></i>
+  </div>
+  <div class="user-card-name">{{ user.lastname }} {{ user.name }}</div>
+  <div class="user-card-type">{{ getProfileType(user.profileType) }}</div>
+</div>

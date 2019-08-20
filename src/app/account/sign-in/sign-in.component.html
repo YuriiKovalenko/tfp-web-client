@@ -1,37 +1,62 @@
 <div class="screen">
   <div class="sign-in">
-    <h2 class="sign-in__title">Авторизация</h2>
-    <form class="sign-in__form">
+    <h2 class="sign-in__title">Вход</h2>
+    <form
+      class="sign-in__form"
+      [formGroup]="authForm"
+      *ngIf="authForm"
+      [nbSpinner]="loading"
+      nbSpinnerStatus="primary"
+    >
       <div class="form-field">
-        <input
-          id="login"
-          type="text"
-          class="form-field__input"
-          formControlName="login"
-        />
-        <label class="form-field__label" for="login">Логин</label>
         <div class="form-field__prefix">
           <span class="lnr lnr-envelope"></span>
         </div>
-      </div>
-      <div class="form-field">
         <input
-          id="password"
+          nbInput
+          fullWidth
           type="text"
           class="form-field__input"
-          formControlName="password"
+          formControlName="email"
+          placeholder="Email"
         />
-        <label class="form-field__label" for="password">Пароль</label>
+      </div>
+      <div class="form-field">
         <div class="form-field__prefix">
           <span class="lnr lnr-lock"></span>
         </div>
+        <input
+          nbInput
+          fullWidth
+          type="password"
+          class="form-field__input"
+          formControlName="password"
+          placeholder="Пароль"
+        />
       </div>
       <div class="form-actions">
-        <button class="form-actions__button form-actions__button_sign-up">
+        <button
+          nbButton
+          shape="round"
+          outline
+          class="form-actions__button form-actions__button_sign-up"
+          routerLink="../sign-up"
+        >
           Регистрация
         </button>
-        <button class="form-actions__button form-actions__button_sign-in">Войти</button>
+        <button
+          nbButton
+          hero
+          status="primary"
+          shape="round"
+          class="form-actions__button form-actions__button_sign-in"
+          [disabled]="authForm.invalid"
+          (click)="signIn()"
+        >
+          Войти
+        </button>
       </div>
     </form>
   </div>
+  <div class="picture"></div>
 </div>

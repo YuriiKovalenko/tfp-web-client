@@ -1,0 +1,103 @@
+$bg: url('../../../assets/signup.jpg') center center / cover no-repeat;
+
+.screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background: white;
+}
+
+.picture {
+  width: 50%;
+  height: 100%;
+  background: $bg;
+
+  @media (max-width: 640px) {
+    display: none;
+  }
+}
+
+.sign-up {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  z-index: 2;
+
+  @media (max-width: 640px) {
+    width: 100%;
+    background: $bg;
+  }
+}
+
+nb-stepper {
+  padding: 20px;
+
+  @media (max-width: 640px) {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+
+.input-group {
+  width: 400px;
+  height: 250px;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+}
+
+.form-field {
+  position: relative;
+  padding-bottom: 12px;
+  margin-bottom: 13px;
+
+  .form-control {
+    display: block;
+  }
+
+  .error {
+    position: absolute;
+    font-size: 11px;
+    margin-left: 15px;
+  }
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.title {
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+  }
+}
+
+.back-button {
+  position: absolute;
+  left: 0;
+
+  @media (max-width: 480px) {
+    position: static;
+    margin-right: 5px;
+
+    &-text {
+      display: none;
+    }
+  }
+}

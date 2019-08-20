@@ -1,0 +1,21 @@
+<nb-card class="confirm-email" accent="primary">
+  <nb-card-header>Нужно подтвердить почту</nb-card-header>
+  <nb-card-body>
+    <p>Введите код подтверждения</p>
+    <div class="form-field">
+      <input type="text" fullWidth nbInput [(ngModel)]="code" />
+    </div>
+    <div class="form-actions">
+      <button nbButton hero status="primary" (click)="submit()">Ок</button>
+      <button nbButton outline status="info" (click)="sendCode()">
+        Отправить еще раз
+      </button>
+    </div>
+    <div class="errors" *ngIf="errors">
+      <span class="error" *ngIf="errors?.wrong">Невeрный код</span>
+      <span class="error" *ngIf="errors?.tooMuch">
+        Вы просили код подтверждения более трёх раз
+      </span>
+    </div>
+  </nb-card-body>
+</nb-card>

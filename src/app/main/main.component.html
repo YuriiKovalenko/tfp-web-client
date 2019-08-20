@@ -1,3 +1,20 @@
-<p>
-  main works!
-</p>
+<nb-layout>
+  <nb-layout-header subheader *ngIf="isMobile">
+    <nb-icon icon="menu" (click)="toggleSidebar()"></nb-icon>
+  </nb-layout-header>
+  <nb-sidebar responsive [ngClass]="{ animated: isMobile }">
+    <nb-sidebar-header>
+      TFP
+      <nb-icon
+        icon="cross"
+        *ngIf="isMobile"
+        (click)="toggleSidebar()"
+      ></nb-icon>
+    </nb-sidebar-header>
+    <app-user-card></app-user-card>
+    <app-nav-menu (click)="isMobile ? toggleSidebar() : null"></app-nav-menu>
+  </nb-sidebar>
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>

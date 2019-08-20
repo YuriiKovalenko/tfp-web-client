@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AccountComponent } from './account/account.component';
-import { MainComponent } from './main/main.component';
+import { MainGuard } from './main/main.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/main', pathMatch: 'full' }
-  // ,{path: '**'}
+  { path: '', redirectTo: '/main', pathMatch: 'full' },
+  {
+    path: 'main',
+    canActivate: [MainGuard],
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
+  },
+  {
+    path: 'account',
+    loadChildren: () =>
+      import('./account/account.module').then(m => m.AccountModule)
+  }
 ];
 
 @NgModule({

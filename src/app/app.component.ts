@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NbIconLibraries } from '@nebular/theme';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'tfp';
+  public title = 'tfp';
+  constructor(private iconLibraries: NbIconLibraries) {
+    this.iconLibraries.registerFontPack('linear', {
+      iconClassPrefix: 'lnr',
+      packClass: 'lnr'
+    });
+    this.iconLibraries.setDefaultPack('linear');
+  }
 }

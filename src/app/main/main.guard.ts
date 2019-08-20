@@ -21,7 +21,10 @@ export class MainGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-      debugger;
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      return true;
+    }
     this.router.navigate(['/account']);
     return false;
   }
